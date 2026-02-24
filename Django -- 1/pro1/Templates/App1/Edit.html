@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            border-color: #1d2671;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #1d2671;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #151b54;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: #1d2671;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>User Form</h2>
+
+    <form action="/app1/Edit/{{ x.id }}" method="POST">
+        <div class="form-group">
+            <label>Name</label>
+            <input value="{{ x.Name }}" name="ne" type="text" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input value="{{ x.Email }}" name="em" type="email" placeholder="Enter your email" required>
+        </div>
+
+        <button class="btn" type="submit">Submit</button>
+    </form>
+
+    <div class="form-footer">
+        Already have an account? <a href="#">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

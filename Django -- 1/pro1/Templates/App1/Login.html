@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="Login-Page" method="POST">
+        <div class="input-box">
+            <input name="em" type="text" required>
+            <label>Email</label>
+        </div>
+
+        <div class="input-box">
+            <input name="pw" type="password" required>
+            <label>Password</label>
+        </div>
+
+        <div class="input-box">
+            {{ x.c }}
+            <label>Captcha</label>
+        </div>
+
+        <p style="color: red">{{ Err }}</p>
+
+        <button type="submit">Login</button>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a>
+
+        <div class="links">
+            <a href="/app1/Forget/1">Forgot Password?</a>
+            <a href="/app1/Register-Page">Create Account</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

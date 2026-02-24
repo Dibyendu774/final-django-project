@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Card</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+    background:#f4f6f9;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* CARD */
+.product-card{
+    width:300px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    transition:0.4s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+/* IMAGE */
+.product-img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+/* CONTENT */
+.card-content{
+    padding:20px;
+}
+
+.product-title{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:20px;
+    color:#28a745;
+    font-weight:bold;
+}
+
+/* RATING */
+.rating{
+    color:gold;
+    margin:8px 0;
+}
+
+/* BUTTON */
+.add-cart-btn{
+    width:100%;
+    border:none;
+    padding:12px;
+    background:#007bff;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.add-cart-btn:hover{
+    background:#0056b3;
+}
+
+.add-cart-btn i{
+    margin-right:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+{% for i in Data %}
+<div class="product-card">
+
+    <img src="{{ i.p_image.url }}" class="product-img">
+
+    <div class="card-content">
+
+        <div class="product-title">{{ i.name }}</div>
+
+        <div class="price">₹ {{ i.price }}</div>
+
+        <div class="rating">
+            ★★★★☆
+        </div>
+
+        <!-- FORM TAG -->
+        <form action="/app1/add-cart" method="POST">
+
+            <input type="hidden" name="product_id" value="{{ i.id }}">
+
+            <button type="submit" class="add-cart-btn">
+                <i class="fa fa-cart-shopping"></i>
+                Add to Cart
+            </button>
+
+        </form>
+
+        {{ Err }}
+        {{ Success }}
+
+    </div>
+
+</div>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Language Translator</title>
+    <link rel="stylesheet" href="{% static 'css/translate.css' %}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+</head>
+<body>
+     <div class="container">
+        <h1><i class="fas fa-language"></i> Language Translator</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label><i class="fas fa-edit"></i> Enter Text:</label>
+            <textarea name="text" rows="3" placeholder="Enter text...">{{ text }}</textarea><br><br>
+
+            <label><i class="fas fa-language"></i> Source Language:</label>
+            <select id="source_language" name="source_language" class="searchable-dropdown">
+                <option value="auto" {% if source_lang == 'auto' %} selected {% endif %}>Detect Language</option>
+                {% for lang, code in languages.items %}
+                    <option value="{{ code }}" {% if code == source_lang %} selected {% endif %}>{{ lang }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" name="swap_languages" class="swap-btn"><i class="fas fa-exchange-alt"></i></button>
+
+            <label><i class="fas fa-globe"></i> Target Language:</label>
+            <select id="target_language" name="target_language" class="searchable-dropdown">
+                {% for lang, code in languages.items %}
+                    <option value="{{ code }}" {% if code == target_lang %} selected {% endif %}>{{ lang }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit" class="translate-btn">
+                <span class="text">Translate</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        {% if translated_text %}
+            <h3 style="color: aqua">Translated Text:</h3>
+            <p><strong>{{ translated_text }}</strong></p>
+            <div class="voice-selector">
+                <label>Select Voice</label>
+                <select id="voiceSelector">
+                    <option value="female" selected>Female</option>
+                    <option value="male">Male</option>
+                </select>
+                <button type="button" id="speakButton">Speak</button>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.searchable-dropdown').select2({
+                placeholder: "Select a language",
+                allowClear: true
+            });
+        });
+        document.getElementById('speakButton').addEventListener('click', function() {
+            let text = "{{ translated_text|escapejs }}";
+            let speech = new SpeechSynthesisUtterance(text);
+            let voices = speechSynthesis.getVoices();
+            let selectedVoice = document.getElementById('voiceSelector').value;
+
+            let voice = selectedVoice === 'female'
+                        ? voices.find(v => v.name.toLowerCase().includes('female'))
+                        : voices.find(v => v.name.toLowerCase().includes('male')) || voices[0];
+
+            speech.voice = voice;
+            speech.lang = '{{ target_lang }}';
+            speech.rate = 0.7;
+            speech.pitch = 1.2;
+
+            window.speechSynthesis.speak(speech);
+    });
+    </script>
+</body>
+</html>

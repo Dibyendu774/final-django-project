@@ -1,0 +1,246 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: slideInFromLeft 1.5s ease-in-out;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5em;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    animation: slideInFromTop 1.5s ease-in-out;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideInFromBottom 1.5s ease-in-out;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.05);
+}
+
+label {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+textarea, select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 2px solid #ff758c;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+textarea:focus, select:focus {
+    border-color: #ff7eb3;
+    box-shadow: 0 0 15px rgba(255, 117, 140, 0.6);
+}
+
+.swap-btn {
+    font-size: 1.8em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff758c;
+    margin: 20px 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.swap-btn:hover {
+    transform: rotate(360deg) scale(1.1);
+    color: #ff7eb3;
+}
+
+/* Button Slide Effect */
+button {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    border: none;
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(255, 117, 140, 0.4);
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease-in-out;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 117, 140, 0.6);
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #fff;
+    text-align: center;
+    animation: slideInFromRight 1s ease-in-out;
+}
+
+p {
+    font-size: 1.3em;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    animation: slideInFromLeft 1.5s ease-in-out;
+}
+
+#speakButton {
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 20px rgba(255, 117, 140, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#speakButton i {
+    font-size: 1.5em;
+}
+
+#speakButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 117, 140, 0.6);
+}
+
+.voice-selector {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .voice-selector select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 2px solid #ff758c;
+            outline: none;
+            background-color: transparent;
+        }
+
+        .voice-selector button {
+            margin-top: 10px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            border: none;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        .voice-selector button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.6);
+        }
+
+.image-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .image-container button {
+            width: 100%;
+            font-size: 1.2em;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    button {
+        font-size: 1em;
+    }
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

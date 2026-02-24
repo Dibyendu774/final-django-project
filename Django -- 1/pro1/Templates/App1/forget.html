@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Reset Password</h2>
+    <form action="/app1/Forget/{{ x }}" method="POST">
+        <div class="input-box">
+            <input name="em" type="text" required>
+            <label>Email</label>
+        </div>
+
+        <p style="color: red">{{ Err }}</p>
+
+        <button type="submit">Send Otp</button>
+
+    </form>
+</div>
+
+</body>
+</html>
